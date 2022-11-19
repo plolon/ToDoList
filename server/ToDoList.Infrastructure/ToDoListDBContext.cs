@@ -24,5 +24,11 @@ namespace ToDoList.Infrastructure
 
             return base.SaveChangesAsync(cancellationToken);
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ToDoListDBContext).Assembly);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
