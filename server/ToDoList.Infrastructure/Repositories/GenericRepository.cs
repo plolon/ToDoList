@@ -1,9 +1,10 @@
+using Microsoft.EntityFrameworkCore;
 using ToDoList.Domain.Models;
 using ToDoList.Domain.Repositories;
 
 namespace ToDoList.Infrastructure.Repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T: BaseDomainEntity
+    public class GenericRepository<T> : IGenericRepository<T> where T : BaseDomainEntity
     {
         private readonly ToDoListDBContext _dbContext;
 
@@ -11,29 +12,36 @@ namespace ToDoList.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
+
         public async Task<IEnumerable<T>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _dbContext.Set<T>().ToListAsync();
         }
 
         public async Task<T> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Set<T>().FindAsync(id);
         }
 
         public async Task<T> Create(T entity)
         {
-            throw new NotImplementedException();
+            await _dbContext.Set<T>().AddAsync(entity);
+            return entity;
         }
 
         public async Task<T> Update(T entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Set<T>().Update(entity);
+            return entity;
         }
 
         public async Task<bool> Delete(int id)
         {
-            throw new NotImplementedException();
+            var entity = await _dbContext.Set<T>().FindAsync(id);
+            if (entity == null)
+                return false;
+            _dbContext.Set<T>().Remove(entity);
+            return true;
         }
     }
 }
