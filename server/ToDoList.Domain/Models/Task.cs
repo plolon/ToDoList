@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ToDoList.Domain.Models
 {
-    public class Task : BaseDomainEntity
+    public class WorkItem : BaseDomainEntity
     {
         [Required]
         [StringLength(255)]
