@@ -1,17 +1,16 @@
 ﻿using AutoMapper;
-using MediatR;
+using ToDoList.Application.Abstractions.Messaging;
 using ToDoList.Application.Dtos.WorkItems;
-using ToDoList.Application.Features.WorkItems.Commands.Requests;
 using ToDoList.Domain.Models;
 using ToDoList.Domain.Repositories;
 
-namespace ToDoList.Application.Features.WorkItems.Commands.Handlers
+namespace ToDoList.Application.Features.WorkItems.Commands.CreateWorkItem
 {
-    public class CreateWorkItemRequestHandler : IRequestHandler<CreateWorkItemRequest, WorkItemDto>
+    public class CreateWorkItemHandler : ICommandHandler<CreateWorkItemRequest, WorkItemDto>
     {
         private readonly IGenericRepository<WorkItem> _repository;
         private readonly IMapper _mapper;
-        public CreateWorkItemRequestHandler(IGenericRepository<WorkItem> repository, IMapper mapper)
+        public CreateWorkItemHandler(IGenericRepository<WorkItem> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
