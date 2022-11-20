@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using ToDoList.Application.Features.WorkItems.Commands.Requests;
 using ToDoList.Domain.Models;
 using ToDoList.Domain.Repositories;
 
-namespace ToDoList.Application.Features.WorkItems.Commands.Handlers
+namespace ToDoList.Application.Features.WorkItems.Commands.DeleteWorkItem
 {
     public class DeleteWorkItemRequestHandler : IRequestHandler<DeleteWorkItemRequest, bool>
     {

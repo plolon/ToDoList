@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using ToDoList.Application.Dtos.WorkItems;
 using ToDoList.Application.Features.WorkItems.Commands.CreateWorkItem;
-using ToDoList.Application.Features.WorkItems.Commands.Requests;
+using ToDoList.Application.Features.WorkItems.Commands.DeleteWorkItem;
+using ToDoList.Application.Features.WorkItems.Commands.UpdateWorkItem;
 using ToDoList.Application.Features.WorkItems.Queries.Requests;
 
 namespace ToDoList.Api.Controllers
@@ -11,45 +12,45 @@ namespace ToDoList.Api.Controllers
     [ApiController]
     public class WorkItemsController : ControllerBase
     {
-        private readonly IMediator _mediator;
+        private readonly ISender _sender;
 
-        public WorkItemsController(IMediator mediator)
+        public WorkItemsController(ISender sender)
         {
-            _mediator = mediator;
+            _sender = sender;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var result = await _mediator.Send(new GetWorkItemsListRequest());
+            var result = await _sender.Send(new GetWorkItemsListRequest());
             return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await _mediator.Send(new GetWorkItemByIdRequest { Id = id });
+            var result = await _sender.Send(new GetWorkItemByIdRequest { Id = id });
             return Ok(result);
         }
 
         [HttpPost]
         public async Task<IActionResult> Post(SaveWorkItemDto workitem)
         {
-            var result = await _mediator.Send(new CreateWorkItemRequest { WorkItem = workitem });
+            var result = await _sender.Send(new CreateWorkItemRequest { WorkItem = workitem });
             return Ok(result);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Put([FromBody] SaveWorkItemDto workitem, int id)
         {
-            var result = await _mediator.Send(new UpdateWorkItemRequest { WorkItem = workitem, Id = id });
+            var result = await _sender.Send(new UpdateWorkItemRequest { WorkItem = workitem, Id = id });
             return Ok(result);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await _mediator.Send(new DeleteWorkItemRequest { Id = id });
+            var result = await _sender.Send(new DeleteWorkItemRequest { Id = id });
             return Ok(result);
         }
     }
