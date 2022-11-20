@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using ToDoList.Domain.Models;
+using ToDoList.Domain.Models.Common;
 using ToDoList.Domain.Repositories;
 
 namespace ToDoList.Infrastructure.Repositories
@@ -42,6 +42,11 @@ namespace ToDoList.Infrastructure.Repositories
                 return false;
             _dbContext.Set<T>().Remove(entity);
             return true;
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

@@ -1,4 +1,4 @@
-using ToDoList.Domain.Models;
+using ToDoList.Domain.Models.Common;
 using Task = System.Threading.Tasks.Task;
 
 namespace ToDoList.Domain.Repositories
@@ -10,5 +10,7 @@ namespace ToDoList.Domain.Repositories
         Task<T> Create(T entity);
         Task<T> Update(T entity);
         Task<bool> Delete(int id);
+
+        Task SaveChangesAsync();
     }
 }
