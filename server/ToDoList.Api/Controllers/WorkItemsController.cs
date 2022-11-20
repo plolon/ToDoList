@@ -39,9 +39,16 @@ namespace ToDoList.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put([FromBody]SaveWorkItemDto workitem, int id)
+        public async Task<IActionResult> Put([FromBody] SaveWorkItemDto workitem, int id)
         {
             var result = await _mediator.Send(new UpdateWorkItemRequest { WorkItem = workitem, Id = id });
+            return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _mediator.Send(new DeleteWorkItemRequest { Id = id });
             return Ok(result);
         }
     }
