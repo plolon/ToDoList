@@ -43,5 +43,10 @@ namespace ToDoList.Infrastructure.Repositories
             _dbContext.Set<T>().Remove(entity);
             return true;
         }
+
+        public async Task SaveChangesAsync()
+        {
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

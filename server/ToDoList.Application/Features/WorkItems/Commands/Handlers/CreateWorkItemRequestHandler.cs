@@ -20,6 +20,7 @@ namespace ToDoList.Application.Features.WorkItems.Commands.Handlers
         {
             var domainWorkitem = _mapper.Map<WorkItem>(request.WorkItem);
             var workitem = await _repository.Create(domainWorkitem);
+            await _repository.SaveChangesAsync();
             return _mapper.Map<WorkItemDto>(workitem);
         }
     }
