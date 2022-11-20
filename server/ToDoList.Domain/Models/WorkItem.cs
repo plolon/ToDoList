@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using ToDoList.Domain.Models.Common;
 
 namespace ToDoList.Domain.Models
 {

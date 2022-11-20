@@ -1,4 +1,4 @@
-using ToDoList.Domain.Models;
+using ToDoList.Domain.Models.Common;
 using Task = System.Threading.Tasks.Task;
 
 namespace ToDoList.Domain.Repositories

@@ -1,10 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-
-namespace ToDoList.Domain.Models
+﻿namespace ToDoList.Application.Dtos.Common
 {
-    public class BaseDomainEntity
+    public class BaseDto
     {
-        [Key]
         public int Id { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
