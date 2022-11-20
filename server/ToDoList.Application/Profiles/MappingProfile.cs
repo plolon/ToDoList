@@ -9,7 +9,10 @@ namespace ToDoList.Application.Profiles
         public MappingProfile()
         {
             CreateMap<WorkItem, WorkItemDto>().ReverseMap();
-            CreateMap<WorkItem, SaveWorkItemDto>().ReverseMap();
+
+            CreateMap<WorkItem, SaveWorkItemDto>();
+            CreateMap<SaveWorkItemDto, WorkItem>()
+                .ForMember(w => w.Id, opt => opt.Ignore());
         }
     }
 }
