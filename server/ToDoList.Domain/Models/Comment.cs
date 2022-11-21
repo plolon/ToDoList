@@ -7,5 +7,8 @@ namespace ToDoList.Domain.Models
     {
         [Required]
         public string Description { get; set; }
+
+        public int WorkItemId{ get; set; }
+        public virtual WorkItem WorkItem { get; set; }
     }
 }
