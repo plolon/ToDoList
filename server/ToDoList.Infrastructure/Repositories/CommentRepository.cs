@@ -12,9 +12,9 @@ namespace ToDoList.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<Comment>> GetCommentsByWorkItemId(int id)
+        public async Task<IEnumerable<Comment>> GetCommentsByWorkItemId(int workItemId)
         {
-            return _dbContext.Comments.Where(x => x.Id.Equals(id)); //TODO association with workitem!
+            return _dbContext.Comments.Where(x => x.WorkItemId.Equals(workItemId));
         }
     }
 }
