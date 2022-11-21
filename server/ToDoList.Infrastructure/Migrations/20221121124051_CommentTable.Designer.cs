@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToDoList.Infrastructure;
 
@@ -11,9 +12,11 @@ using ToDoList.Infrastructure;
 namespace ToDoList.Infrastructure.Migrations
 {
     [DbContext(typeof(ToDoListDBContext))]
-    partial class ToDoListDBContextModelSnapshot : ModelSnapshot
+    [Migration("20221121124051_CommentTable")]
+    partial class CommentTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,12 +43,7 @@ namespace ToDoList.Infrastructure.Migrations
                     b.Property<DateTime>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("WorkItemId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("WorkItemId");
 
                     b.ToTable("Comments");
                 });
@@ -100,22 +98,6 @@ namespace ToDoList.Infrastructure.Migrations
                             ModifiedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "WorkItem 3"
                         });
-                });
-
-            modelBuilder.Entity("ToDoList.Domain.Models.Comment", b =>
-                {
-                    b.HasOne("ToDoList.Domain.Models.WorkItem", "WorkItem")
-                        .WithMany("Comments")
-                        .HasForeignKey("WorkItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("WorkItem");
-                });
-
-            modelBuilder.Entity("ToDoList.Domain.Models.WorkItem", b =>
-                {
-                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }
