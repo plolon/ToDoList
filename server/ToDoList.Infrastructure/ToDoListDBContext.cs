@@ -11,6 +11,7 @@ namespace ToDoList.Infrastructure
         }
 
         public DbSet<WorkItem> WorkItems { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
