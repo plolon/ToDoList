@@ -4,7 +4,8 @@ using ToDoList.Application.Dtos.WorkItems;
 using ToDoList.Application.Features.WorkItems.Commands.CreateWorkItem;
 using ToDoList.Application.Features.WorkItems.Commands.DeleteWorkItem;
 using ToDoList.Application.Features.WorkItems.Commands.UpdateWorkItem;
-using ToDoList.Application.Features.WorkItems.Queries.Requests;
+using ToDoList.Application.Features.WorkItems.Queries.GetById;
+using ToDoList.Application.Features.WorkItems.Queries.GetList;
 
 namespace ToDoList.Api.Controllers
 {
